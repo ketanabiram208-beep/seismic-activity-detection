@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "author": "Seismic Activity Detection",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-mpu6050", "id": "imu", "top": -30, "left": 230, "attrs": { "accelX": "0", "accelY": "0", "accelZ": "1" } },
+    { "type": "board-ssd1306", "id": "oled", "top": 90, "left": 230, "attrs": { "i2cAddress": "0x3c" } },
+    { "type": "wokwi-resistor", "id": "green_resistor", "top": 230, "left": 220, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "green", "top": 220, "left": 300, "attrs": { "color": "green" } },
+    { "type": "wokwi-resistor", "id": "yellow_resistor", "top": 280, "left": 220, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "yellow", "top": 270, "left": 300, "attrs": { "color": "yellow" } },
+    { "type": "wokwi-resistor", "id": "red_resistor", "top": 330, "left": 220, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "red", "top": 320, "left": 300, "attrs": { "color": "red" } },
+    { "type": "wokwi-buzzer", "id": "buzzer", "top": 390, "left": 230, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:3V3", "imu:VCC", "red", [ "v0" ] ],
+    [ "esp:GND.1", "imu:GND", "black", [ "v0" ] ],
+    [ "esp:D21", "imu:SDA", "cyan", [ "v0" ] ],
+    [ "esp:D22", "imu:SCL", "yellow", [ "v0" ] ],
+    [ "esp:3V3", "oled:VCC", "red", [ "v0" ] ],
+    [ "esp:GND.1", "oled:GND", "black", [ "v0" ] ],
+    [ "esp:D21", "oled:SDA", "cyan", [ "v0" ] ],
+    [ "esp:D22", "oled:SCL", "yellow", [ "v0" ] ],
+    [ "esp:D25", "green_resistor:1", "green", [ "v0" ] ],
+    [ "green_resistor:2", "green:A", "green", [ "v0" ] ],
+    [ "green:C", "esp:GND.1", "black", [ "v0" ] ],
+    [ "esp:D26", "yellow_resistor:1", "orange", [ "v0" ] ],
+    [ "yellow_resistor:2", "yellow:A", "orange", [ "v0" ] ],
+    [ "yellow:C", "esp:GND.1", "black", [ "v0" ] ],
+    [ "esp:D27", "red_resistor:1", "red", [ "v0" ] ],
+    [ "red_resistor:2", "red:A", "red", [ "v0" ] ],
+    [ "red:C", "esp:GND.1", "black", [ "v0" ] ],
+    [ "esp:D18", "buzzer:2", "purple", [ "v0" ] ],
+    [ "buzzer:1", "esp:GND.1", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "author": "Seismic Activity Detection (Arduino Uno)",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 60, "left": 30, "attrs": {} },
+    { "type": "wokwi-mpu6050", "id": "imu", "top": 20, "left": 340, "attrs": { "accelX": "0", "accelY": "0", "accelZ": "1" } },
+    { "type": "board-ssd1306", "id": "oled", "top": 150, "left": 340, "attrs": { "i2cAddress": "0x3c" } },
+    { "type": "wokwi-resistor", "id": "green_resistor", "top": 300, "left": 340, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "green", "top": 290, "left": 420, "attrs": { "color": "green" } },
+    { "type": "wokwi-resistor", "id": "yellow_resistor", "top": 350, "left": 340, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "yellow", "top": 340, "left": 420, "attrs": { "color": "yellow" } },
+    { "type": "wokwi-resistor", "id": "red_resistor", "top": 400, "left": 340, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "red", "top": 390, "left": 420, "attrs": { "color": "red" } },
+    { "type": "wokwi-buzzer", "id": "buzzer", "top": 460, "left": 350, "attrs": {} }
+  ],
+  "connections": [
+    [ "uno:5V", "imu:VCC", "red", [ "v0" ] ],
+    [ "uno:GND.1", "imu:GND", "black", [ "v0" ] ],
+    [ "uno:A4", "imu:SDA", "cyan", [ "v0" ] ],
+    [ "uno:A5", "imu:SCL", "yellow", [ "v0" ] ],
+    [ "uno:5V", "oled:VCC", "red", [ "v0" ] ],
+    [ "uno:GND.1", "oled:GND", "black", [ "v0" ] ],
+    [ "uno:A4", "oled:SDA", "cyan", [ "v0" ] ],
+    [ "uno:A5", "oled:SCL", "yellow", [ "v0" ] ],
+    [ "uno:2", "green_resistor:1", "green", [ "v0" ] ],
+    [ "green_resistor:2", "green:A", "green", [ "v0" ] ],
+    [ "green:C", "uno:GND.1", "black", [ "v0" ] ],
+    [ "uno:3", "yellow_resistor:1", "orange", [ "v0" ] ],
+    [ "yellow_resistor:2", "yellow:A", "orange", [ "v0" ] ],
+    [ "yellow:C", "uno:GND.1", "black", [ "v0" ] ],
+    [ "uno:4", "red_resistor:1", "red", [ "v0" ] ],
+    [ "red_resistor:2", "red:A", "red", [ "v0" ] ],
+    [ "red:C", "uno:GND.1", "black", [ "v0" ] ],
+    [ "uno:8", "buzzer:2", "purple", [ "v0" ] ],
+    [ "buzzer:1", "uno:GND.1", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
